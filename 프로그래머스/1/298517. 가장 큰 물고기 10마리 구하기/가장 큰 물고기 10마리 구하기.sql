@@ -11,3 +11,5 @@ FROM (
     FROM FISH_INFO
 ) AS ranked
 WHERE rnk <= 10;
+
+-- 내부 쿼리 즉, 이것도 내부 테이블이니까 외부 WHERE 사용이 가능하다.

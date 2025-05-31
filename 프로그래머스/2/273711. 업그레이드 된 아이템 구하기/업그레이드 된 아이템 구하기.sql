@@ -1,0 +1,12 @@
+SELECT T.ITEM_ID, I.ITEM_NAME, I.RARITY
+FROM ITEM_INFO AS I
+INNER JOIN ITEM_TREE AS T
+ON I.ITEM_ID = T.ITEM_ID
+WHERE T.PARENT_ITEM_ID IN
+    (SELECT ITEM_ID
+     FROM ITEM_INFO
+     WHERE RARITY = 'RARE'
+    )
+    -- 값 리스트이므로 AS 사용 없어도 됨.
+    -- But, FROM / JOIN 뒤에 오늘 테이블의 경우는 외부에서 테이블처럼 사용하므로 이름 필요
+ORDER BY T.ITEM_ID DESC;

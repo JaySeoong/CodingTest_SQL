@@ -1,0 +1,10 @@
+SELECT ITEM_ID, ITEM_NAME, RARITY
+FROM ITEM_INFO 
+WHERE ITEM_ID NOT IN(
+    SELECT PARENT_ITEM_ID
+    FROM ITEM_TREE
+    WHERE PARENT_ITEM_ID IS NOT NULL
+    -- 위, WHERE 조건 없으면 빈 집합을 반환하게 됨
+    -- NOT IN 혹은 IN 내부에 NULL이 있으면 작동하지 않아 NULL 제거가 반드시 선행되어야 함.
+    )
+ORDER BY ITEM_ID DESC;
